@@ -7,7 +7,7 @@ import json
 import base64
 import uuid
 import csv
-
+from threading import Thread
 
 def execute_cql(query_number, fhir_server_url, cql_input):
 
@@ -54,8 +54,6 @@ exec(open('cql_templates.py').read())
 
 def exec_perf_tests(iteration):
     flare_exec_url = "http://localhost:8080/query/execute"
-    fhir_server_url = "http://localhost:8081/fhir"
-    queries_folder = "queries"
 
     perf_results = []
 
@@ -74,15 +72,16 @@ def exec_perf_tests(iteration):
 
     with open('performance_results-flare.csv', 'a') as csv_file:
         writer = csv.DictWriter(csv_file, fieldnames=perf_results_header, delimiter=";")
-        #writer.writeheader()
+        # writer.writeheader()
         writer.writerows(perf_results)
 
 
-for index in range (0,10):
+for index in range(0, 10):
     exec_perf_tests(index)
 
 concurrent = 0
-for i in range(concurrent):
-    t = Thread(target=exec_perf_tests)
-    t.daemon = False
-    t.start()
+for index in range(0, 10):
+    for i in range(concurrent):
+        t = Thread(target=exec_perf_tests(index))
+        t.daemon = False
+        t.start()

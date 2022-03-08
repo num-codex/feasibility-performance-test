@@ -7,7 +7,7 @@ import json
 import base64
 import uuid
 import csv
-
+from threading import Thread
 
 def execute_cql(query_number, fhir_server_url, cql_input):
 
@@ -56,16 +56,7 @@ def exec_perf_tests(iteration):
 
     for file in os.listdir("cql-queries"):
 
-        if file.endswith(".json"):
-            filepath = os.path.join("./cql-queries", file)
-
-            with open(filepath) as sq_file:
-                sq = sq_file.read()
-                perf_result = execute_flare(file, flare_exec_url, sq)
-                perf_result['iteration'] = iteration
-                perf_results.append(perf_result)
-
-        elif file.endswith(".txt"):
+        if file.endswith(".txt"):
             filepath = os.path.join("./cql-queries", file)
 
             with open(filepath) as cql_file:
@@ -86,7 +77,8 @@ for index in range(0, 10):
     exec_perf_tests(index)
 
 concurrent = 0
-for i in range(concurrent):
-    t = Thread(target=exec_perf_tests)
-    t.daemon = False
-    t.start()
+for index in range(0, 10):
+    for i in range(concurrent):
+        t = Thread(target=exec_perf_tests(index))
+        t.daemon = False
+        t.start()
