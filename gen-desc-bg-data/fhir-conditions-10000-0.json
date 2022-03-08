@@ -1,0 +1,1 @@
+{"name":"fhir-conditions-10000-0","numberToGenerate":10000,"idOffsets":{"Patient":0,"Encounter":0,"Condition":0,"Procedure":0,"Observation":0,"ServiceRequest":1,"DiagnosticReport":1},"Bundle":[{"blueprint":"Patient","genDesc":{"$.gender":{"function":"genEnum","params":{"options":["male","female"]}}}},{"blueprint":"Encounter","genDesc":{"$.status":"finished"}}]}
