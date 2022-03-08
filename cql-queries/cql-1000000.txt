@@ -1,0 +1,16 @@
+library Retrieve
+using FHIR version '4.0.0'
+include FHIRHelpers version '4.0.0'
+
+codesystem icd10: 'http://fhir.de/CodeSystem/bfarm/icd-10-gm'
+codesystem loinc: 'http://loinc.org'
+codesystem ops: 'http://fhir.de/CodeSystem/bfarm/ops'
+
+context Patient
+
+define InInitialPopulation:
+  Patient.gender = 'female' and
+  exists [Condition: Code 'C50.4' from icd10] and
+  exists [Procedure: Code '5-787.eu' from ops] and
+  exists from [Observation: Code '30351-1' from loinc] O
+    where O.value as Quantity > 0 'g/dL'

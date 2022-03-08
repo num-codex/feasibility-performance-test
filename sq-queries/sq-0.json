@@ -1,0 +1,80 @@
+{
+  "version": "http://to_be_decided.com/draft-1/schema#",
+  "inclusionCriteria": [
+      [
+          {
+      "termCodes": [
+        {
+          "code": "gender",
+          "system": "mii.abide",
+          "display": "Geschlecht"
+        }
+      ],
+      "attributeFilters": [
+        {
+          "selectedConcepts": [
+            {
+              "code": "test",
+              "system": "http://hl7.org/fhir/administrative-gender",
+              "display": "test - 0 will be found"
+            }
+          ],
+          "type": "concept",
+          "attributeCode": {
+            "code": "gender",
+            "system": "mii.abide",
+            "display": "Geschlecht"
+          }
+        }
+      ]
+    }
+      ],
+      [
+          {
+              "termCodes": [
+                  {
+                      "code": "C50.9",
+                      "system": "http://fhir.de/CodeSystem/bfarm/icd-10-gm",
+                      "version": "2021",
+                      "display": "Benigne essentielle Hypertonie"
+                  }
+              ],
+              "attributeFilters": [],
+              "timeRestriction": {}
+          }
+      ],
+      [
+          {
+              "termCodes": [
+                  {
+                      "code": "5-787.ez",
+                      "system": "http://fhir.de/CodeSystem/bfarm/ops",
+                      "version": "2021",
+                      "display": "Test 10"
+                  }
+              ]
+          }
+      ],
+              [
+          {
+              "termCodes": [
+                  {
+                      "code": "59260-0",
+                      "system": "http://loinc.org",
+                      "display": "Test Value Hem 0"
+                  }
+              ],
+              "valueFilter": {
+                  "type": "quantity-comparator",
+                  "selectedConcepts": [],
+                  "comparator": "gt",
+                  "unit": {
+                      "code": "g/dL",
+                      "display": "g/dL"
+                  },
+                  "value": 0
+              }
+          }
+      ]
+  ]
+}

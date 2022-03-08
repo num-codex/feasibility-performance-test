@@ -1,0 +1,80 @@
+{
+  "version": "http://to_be_decided.com/draft-1/schema#",
+  "inclusionCriteria": [
+      [
+          {
+      "termCodes": [
+        {
+          "code": "gender",
+          "system": "mii.abide",
+          "display": "Geschlecht"
+        }
+      ],
+      "attributeFilters": [
+        {
+          "selectedConcepts": [
+            {
+              "code": "female",
+              "system": "http://hl7.org/fhir/administrative-gender",
+              "display": "male - 1000000 found"
+            }
+          ],
+          "type": "concept",
+          "attributeCode": {
+            "code": "gender",
+            "system": "mii.abide",
+            "display": "Geschlecht"
+          }
+        }
+      ]
+    }
+      ],
+      [
+          {
+              "termCodes": [
+                  {
+                      "code": "C50.4",
+                      "system": "http://fhir.de/CodeSystem/bfarm/icd-10-gm",
+                      "version": "2021",
+                      "display": "test 1000000"
+                  }
+              ],
+              "attributeFilters": [],
+              "timeRestriction": {}
+          }
+      ],
+      [
+          {
+              "termCodes": [
+                  {
+                      "code": "5-787.en",
+                      "system": "http://fhir.de/CodeSystem/bfarm/ops",
+                      "version": "2021",
+                      "display": "Test 1000000"
+                  }
+              ]
+          }
+      ],
+              [
+          {
+              "termCodes": [
+                  {
+                      "code": "30351-1",
+                      "system": "http://loinc.org",
+                      "display": "Test Value Hem 1000000"
+                  }
+              ],
+              "valueFilter": {
+                  "type": "quantity-comparator",
+                  "selectedConcepts": [],
+                  "comparator": "gt",
+                  "unit": {
+                      "code": "g/dL",
+                      "display": "g/dL"
+                  },
+                  "value": 0
+              }
+          }
+      ]
+  ]
+}
