@@ -2,3 +2,6 @@ bak
 *.csv
 testdata
 test-overview.md
+*.xlsx
+analyse_results.py
+results
