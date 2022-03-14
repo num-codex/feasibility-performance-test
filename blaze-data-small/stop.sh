@@ -1,0 +1,1 @@
+docker-compose -p perf-test-small stop

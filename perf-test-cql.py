@@ -49,8 +49,7 @@ def execute_flare(query_number, flare_exec_url, sq):
 exec(open('cql_templates.py').read())
 
 
-def exec_perf_tests(iteration):
-    flare_exec_url = "http://localhost:8085/query/execute"
+def exec_perf_tests():
     fhir_server_url = "http://localhost:8081/fhir"
     perf_results = []
 
@@ -61,9 +60,12 @@ def exec_perf_tests(iteration):
 
             with open(filepath) as cql_file:
                 cql_input = cql_file.read()
-                perf_result = execute_cql(file, fhir_server_url, cql_input)
-                perf_result['iteration'] = iteration
-                perf_results.append(perf_result)
+                
+                execute_cql(file, fhir_server_url, cql_input)
+                for index in range(0, 10):
+                    perf_result = execute_cql(file, fhir_server_url, cql_input)
+                    perf_result['iteration'] = index
+                    perf_results.append(perf_result)
 
     perf_results_header = ["iteration", "query_number", "query_exec_type", "time_taken_seconds", "n_resources_found"]
 
@@ -73,8 +75,7 @@ def exec_perf_tests(iteration):
         writer.writerows(perf_results)
 
 
-for index in range(0, 10):
-    exec_perf_tests(index)
+exec_perf_tests()
 
 concurrent = 0
 for index in range(0, 10):
